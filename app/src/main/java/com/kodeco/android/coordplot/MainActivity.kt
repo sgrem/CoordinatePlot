@@ -28,7 +28,7 @@ fun PlotSurface() {
         modifier = Modifier.fillMaxSize(),
         color = Color.White
     ) {
-        MapScreen()
+        MapComposable()
     }
 }
 
