@@ -1,8 +1,10 @@
 package com.kodeco.android.coordplot
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -25,8 +27,10 @@ fun MapComposable() {
     var xSliderValue by remember { mutableStateOf(0.5f) }
     var ySliderValue by remember { mutableStateOf(0.5f) }
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        MapGraph(xSliderValue, ySliderValue)
+    Column( horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center) {
+        MapGraph(xSliderValue, ySliderValue, mapSize = 300, cursorSize = 36)
+        Spacer(modifier = Modifier.size(20.dp))
         Slider(
             value = xSliderValue,
             onValueChange = { newValue ->
@@ -45,19 +49,22 @@ fun MapComposable() {
     }
 }
 @Composable
-fun MapGraph(xPercent: Float, yPercent: Float) {
+fun MapGraph(xPercent: Float, yPercent: Float, mapSize: Int, cursorSize: Int) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(modifier = Modifier.size(300.dp)) {
+        Box(modifier = Modifier
+            .size((mapSize + cursorSize).dp)
+            .background(Color.LightGray)) {
             Box(
                 modifier = Modifier
-                    .size(36.dp)
-                    .offset((xPercent * 300 - 18).dp, (yPercent * 300 - 18).dp)
+                    .size(cursorSize.dp)
+                    .offset((xPercent * mapSize).dp, (yPercent * mapSize).dp)
                     .clip(CircleShape)
                     .background(Color.Blue)
             )
         }
     }
 }
+
 
 @Composable
 fun SliderValues(xSliderValue: Float, ySliderValue: Float) {
