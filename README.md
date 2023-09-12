@@ -35,10 +35,10 @@ Here is the final project zip: https://drive.google.com/file/d/15cn0ifWDVwBf1Dj5
 3. Theme the App
    1. Changed the colors and names from purple to green and applied them to the themes in Theme.kt.
 4. Testing and Bug Fixing
-   1. Tested on 2 emulators...a Pixel 2 API 28 and a Pixel 6 Pro API 33.
+   1. Tested on 4 emulators...a Pixel 2 API 26(minSDK) + API 28, a Pixel 6 Pro API 33, and a Pixel 3a API 34(targetSDK)
 5. Documentation
    1. Updated the README.md file in your GitHub repository to include a brief description of your app and its features.
-   2. Documenteded major changes or improvements made during the polishing process.
+   2. Documented major changes or improvements made during the polishing process.
 6. Splash Screen
    1. TODO
 
