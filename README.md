@@ -23,7 +23,7 @@ Here is the final project zip: https://drive.google.com/file/d/15cn0ifWDVwBf1Dj5
 ### Changes
 
 1. User Interface Enhancements
-   1. Imported arrow.png into Android Studio as a drawable and use as cursor in Map.
+   1. Imported arrow.png into Android Studio as a drawable and use as cursor in Map. ![Arrow image](./app/src/main/res/drawable/arrow.png)
    2. Replaced the Circle composable with an Image composable that uses the new arrow.png asset.
    3. MapSlider composable 
       1. Created a Row composable with a horizontal padding of 16.dp
@@ -41,6 +41,7 @@ Here is the final project zip: https://drive.google.com/file/d/15cn0ifWDVwBf1Dj5
    2. Documenteded major changes or improvements made during the polishing process.
 6. Splash Screen
    1. TODO
+
 
 
 
