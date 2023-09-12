@@ -40,7 +40,7 @@ Here is the final project zip: https://drive.google.com/file/d/15cn0ifWDVwBf1Dj5
    1. Updated the README.md file in your GitHub repository to include a brief description of your app and its features.
    2. Documented major changes or improvements made during the polishing process.
 6. Splash Screen
-   1. TODO
+   1. Implemented a splash screen
 
 
 
