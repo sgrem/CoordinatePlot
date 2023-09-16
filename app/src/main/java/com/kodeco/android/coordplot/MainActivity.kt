@@ -9,14 +9,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
-                PlotSurface()
+            val navController = rememberNavController()
+            NavHost(navController, startDestination = "splash_screen") {
+                composable("splash_screen") {
+                    SplashScreenWithNavigation(navController)
+                }
+                composable("main_screen") {
+                    MyApplicationTheme {
+                        PlotSurface()
+                    }
+                }
             }
         }
     }
