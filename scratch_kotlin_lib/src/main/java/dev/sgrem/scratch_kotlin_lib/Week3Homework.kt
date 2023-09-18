@@ -13,6 +13,20 @@ fun main(){
     println("String \"$str\" contains both 'a' and 'z': ${str.containsBoth('a', 'z')}")
     str = "Apple Zebra"
     println("String \"$str\" contains both 'a' and 'z': ${str.containsBoth('a', 'z')}")
+    println()
+
+    println("3. If/Else Conditions:")
+    var temperature = 0
+    println("The temperature is $temperature: ${checkTemperature(temperature)}")
+    temperature = 10
+    println("The temperature is $temperature: ${checkTemperature(temperature)}")
+    temperature = 25
+    println("The temperature is $temperature: ${checkTemperature(temperature)}")
+    temperature = 26
+    println("The temperature is $temperature: ${checkTemperature(temperature)}")
+    println()
+
+
 }
 
 /*
@@ -33,8 +47,6 @@ fun String.containsBoth(a: Char, b: Char): Boolean {
 }
 
 
-
-
 /*
 3. If/Else Conditions:
 - Write a Kotlin function called checkTemperature that takes a temperature in Celsius as a parameter. The function should return a message based on the temperature as follows:
@@ -42,6 +54,18 @@ If the temperature is below freezing (0°C or lower), return "It's freezing cold
 If the temperature is between 0°C and 10°C (inclusive), return "It's chilly."
 If the temperature is between 11°C and 25°C (inclusive), return "It's pleasant."
 If the temperature is above 25°C, return "It's warm."
+*/
+fun checkTemperature(temperatureCelsius: Int): String {
+    return when {
+        temperatureCelsius <= 0 -> "It's freezing cold!"
+        temperatureCelsius in 1..10 -> "It's chilly."
+        temperatureCelsius in 11..25 -> "It's pleasant."
+        else -> "It's warm."
+    }
+}
+
+
+/*
 4. Loops:
 - Write a Kotlin function called printMultiples that takes two integers, number and limit, as parameters. The function should use a loop to print all the multiples of number up to and including limit. Each multiple should be printed on a new line.
 In this example, when printMultiples(3, 15) is called, the function should print:
