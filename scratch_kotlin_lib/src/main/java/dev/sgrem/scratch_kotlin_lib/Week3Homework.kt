@@ -6,7 +6,13 @@ fun main(){
     println("2 + 7 is divisible by 4: ${isDivisibleByFour(2, 7)}")
     println()
 
-    print("2. Combining Logic Operators:")
+    println("2. Combining Logic Operators:")
+    var str = "apple zebra"
+    println("String \"$str\" contains both 'a' and 'z': ${str.containsBoth('a', 'z')}")
+    str = "apple ebra"
+    println("String \"$str\" contains both 'a' and 'z': ${str.containsBoth('a', 'z')}")
+    str = "Apple Zebra"
+    println("String \"$str\" contains both 'a' and 'z': ${str.containsBoth('a', 'z')}")
 }
 
 /*
@@ -22,6 +28,12 @@ fun isDivisibleByFour(num1: Int, num2: Int): Boolean {
 2. Combining Logic Operators:
 - Write a Kotlin function that takes in a string parameter and returns `true` if the string contains both ‘a’ and ‘z’ characters (the check is case-sensitive), otherwise returns `false`.
 */
+fun String.containsBoth(a: Char, b: Char): Boolean {
+    return this.contains(a) && this.contains(b)
+}
+
+
+
 
 /*
 3. If/Else Conditions:
