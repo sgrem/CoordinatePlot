@@ -26,6 +26,14 @@ fun main(){
     println("The temperature is $temperature: ${checkTemperature(temperature)}")
     println()
 
+    println("4. Loops:")
+    var number = 3; var limit = 15
+    println("Multiples of $number <= $limit:")
+    printMultiples(number, limit)
+    number = 2; limit = 9
+    println("Multiples of $number <= $limit:")
+    printMultiples(number, limit)
+    println()
 
 }
 
@@ -74,8 +82,15 @@ In this example, when printMultiples(3, 15) is called, the function should print
 9
 12
 15
+*/
+fun printMultiples(number: Int, limit: Int) {
+    for (i in number..limit step number) {
+        println(i)
+    }
+}
 
 
+/*
 5. When Statements:
 - Write a Kotlin function called getGrade that takes a student's numeric score as a parameter (an integer between 0 and 100) and returns a letter grade based on the following grading scale:
 90-100: "A"
