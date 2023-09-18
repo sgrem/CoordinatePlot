@@ -35,6 +35,21 @@ fun main(){
     printMultiples(number, limit)
     println()
 
+    println("5. When Statements:")
+    var score = 100
+    println("Grade for score $score: ${getGrade(score)}")
+    score = 89
+    println("Grade for score $score: ${getGrade(score)}")
+    score = 79
+    println("Grade for score $score: ${getGrade(score)}")
+    score = 69
+    println("Grade for score $score: ${getGrade(score)}")
+    score = 59
+    println("Grade for score $score: ${getGrade(score)}")
+    score = 101
+    println("Grade for score $score: ${getGrade(score)}")
+    println()
+
 }
 
 /*
@@ -98,6 +113,19 @@ fun printMultiples(number: Int, limit: Int) {
 70-79: "C"
 60-69: "D"
 0-59: "F"
+*/
+fun getGrade(score: Int): String{
+    return when(score) {
+        in 90..100 -> "A"
+        in 80..89 -> "B"
+        in 70..79 -> "C"
+        in 60..69 -> "D"
+        in 0..59 -> "F"
+        else -> "Error: Score $score out of bounds (0 - 100)"
+    }
+}
+
+/*
 6. Nullability:
 - Write a Kotlin function that takes a nullable integer as input and returns that integer value times 2.  If the integer is null, return 0.  For example an input of 3 returns 6, an input of 5 returns 10, and an input of null returns 0.
 
