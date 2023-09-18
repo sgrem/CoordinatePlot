@@ -50,6 +50,22 @@ fun main(){
     println("Grade for score $score: ${getGrade(score)}")
     println()
 
+    println("6. Nullability")
+    var myInt: Int? = 5
+    println("${myInt ?: 0} * 2 = ${timesTwo(myInt)}")
+    myInt = null
+    println("${myInt ?: 0} * 2 = ${timesTwo(myInt)}")
+    println()
+
+    println("7. (Above and Beyond) Spiral Array:")
+    var n = 3
+    println("Spiral $n x $n matrix:")
+    println( generateSpiralArray(n))
+    n = 4
+    println("\nSpiral $n x $n matrix:")
+    println(generateSpiralArray(n))
+    println()
+
 }
 
 /*
@@ -125,10 +141,15 @@ fun getGrade(score: Int): String{
     }
 }
 
+
 /*
 6. Nullability:
 - Write a Kotlin function that takes a nullable integer as input and returns that integer value times 2.  If the integer is null, return 0.  For example an input of 3 returns 6, an input of 5 returns 10, and an input of null returns 0.
+ */
+fun timesTwo(myInt: Int?): Int = if(myInt != null) myInt * 2 else 0
 
+
+ /*
 7. (Above and Beyond) Spiral Array:
 - Write a Kotlin function called generateSpiralArray that takes an integer n as a parameter and generates an n x n matrix in the form of a spiral. The function should return the spiral matrix as a list of lists (a 2D array).
 For example, given n = 3, the function should return:
@@ -137,5 +158,36 @@ For example, given n = 3, the function should return:
 [8, 9, 4],
 [7, 6, 5]
 ]
-
 */
+ fun generateSpiralArray(n: Int): List<List<Int>> {
+     val matrix = Array(n) { IntArray(n) }
+     var value = 1
+     var rowStart = 0
+     var rowEnd = n - 1
+     var colStart = 0
+     var colEnd = n - 1
+
+     while (rowStart <= rowEnd && colStart <= colEnd) {
+         for (i in colStart..colEnd) {
+             matrix[rowStart][i] = value++
+         }
+         rowStart++
+
+         for (i in rowStart..rowEnd) {
+             matrix[i][colEnd] = value++
+         }
+         colEnd--
+
+         for (i in colEnd downTo colStart) {
+             matrix[rowEnd][i] = value++
+         }
+         rowEnd--
+
+         for (i in rowEnd downTo rowStart) {
+             matrix[i][colStart] = value++
+         }
+         colStart++
+     }
+
+     return matrix.map { it.toList() }
+ }
