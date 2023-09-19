@@ -160,6 +160,7 @@ For example, given n = 3, the function should return:
 ]
 */
  fun generateSpiralArray(n: Int): List<List<Int>> {
+     // n x n matrix of rows 'Array(n)' and columns 'IntArray(n)'
      val matrix = Array(n) { IntArray(n) }
      var value = 1
      var rowStart = 0
@@ -167,27 +168,59 @@ For example, given n = 3, the function should return:
      var colStart = 0
      var colEnd = n - 1
 
+     // Keep spiralling until all columns and rows are filled
      while (rowStart <= rowEnd && colStart <= colEnd) {
+
+         /*
+          * go right and fill the row
+          *
+          */
          for (i in colStart..colEnd) {
              matrix[rowStart][i] = value++
          }
+         // next row up
          rowStart++
 
+         /*
+          * then go up and fill the column
+          *
+          * Note: if rowStart > rowEnd the range will be empty and the for body
+          * will not be executed
+          *
+          */
          for (i in rowStart..rowEnd) {
              matrix[i][colEnd] = value++
          }
+         // next column to the left
          colEnd--
 
+         /*
+          * then go left and fill the row
+          *
+          * Note: if colEnd > colStart the range will be empty and the for body
+          * will not be executed
+          *
+          */
          for (i in colEnd downTo colStart) {
              matrix[rowEnd][i] = value++
          }
+         // next row down
          rowEnd--
 
+         /*
+          * then go down and fill the column
+          *
+          * Note: if rowEnd > rowStart the range will be empty and the for body
+          * will not be executed
+          *
+          */
          for (i in rowEnd downTo rowStart) {
              matrix[i][colStart] = value++
          }
+         // next column to the right
          colStart++
      }
 
+     // return a list of n lists
      return matrix.map { it.toList() }
  }
