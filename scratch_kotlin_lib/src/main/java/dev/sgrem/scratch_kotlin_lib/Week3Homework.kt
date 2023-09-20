@@ -58,15 +58,24 @@ fun main(){
     println()
 
     println("7. (Above and Beyond) Spiral Array:")
-    var n = 3
+    var n = 1
     println("Spiral $n x $n matrix:")
-    println( generateSpiralArray(n))
+    printListOfLists(generateSpiralArray(n))
+    n = 2
+    println("Spiral $n x $n matrix:")
+    printListOfLists(generateSpiralArray(n))
+    n = 3
+    println("Spiral $n x $n matrix:")
+    printListOfLists(generateSpiralArray(n))
     n = 4
     println("\nSpiral $n x $n matrix:")
-    println(generateSpiralArray(n))
-    println()
+    printListOfLists(generateSpiralArray(n))
+    n = 5
+    println("\nSpiral $n x $n matrix:")
+    printListOfLists(generateSpiralArray(n))
 
 }
+
 
 /*
 1. Boolean Comparisons:
@@ -224,3 +233,11 @@ For example, given n = 3, the function should return:
      // return a list of n lists
      return matrix.map { it.toList() }
  }
+
+fun printListOfLists(listOfLists: List<List<Int>>) {
+    println(listOfLists)
+    println("Prettified:")
+    listOfLists.forEach {innerList ->
+        println(innerList)
+    }
+}
