@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Coordinate Plotter"
 include(":app")
+include(":scratch_kotlin_lib")
