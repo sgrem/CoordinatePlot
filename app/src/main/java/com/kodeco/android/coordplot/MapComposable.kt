@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,8 +20,8 @@ import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 @Composable
 fun MapComposable() {
-    var xSliderValue by remember { mutableFloatStateOf(0.5f) }
-    var ySliderValue by remember { mutableFloatStateOf(0.5f) }
+    var xSliderValue by rememberSaveable { mutableFloatStateOf(0.5f) }
+    var ySliderValue by rememberSaveable { mutableFloatStateOf(0.5f) }
 
 
     BoxWithConstraints {
