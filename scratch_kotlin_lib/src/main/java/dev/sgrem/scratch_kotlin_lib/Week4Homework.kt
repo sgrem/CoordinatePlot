@@ -27,6 +27,13 @@ fun main() {
     addTask(taskList,"Task #13", 2, true)
 
     // 4. Sort Tasks:
+    /*
+     *  sortedTasks is a generic function for any type T that implements
+     *  the Comparable<T> interface. The selector parameter is a function
+     *  literal with receiver. These are lambda expressions that have a
+     *  receiver type, allowing you to call methods and access properties of
+     *  the receiver within the lambda.
+     */
     fun <T : Comparable<T>> sortedTasks(
         taskList: MutableList<Task>,
         selector: Task.() -> T): List<Task> {
@@ -46,6 +53,19 @@ fun main() {
     val tasksSortedByCompleted = sortedTasks(taskList) {completed}
     println("Tasks sorted by completed:")
     tasksSortedByCompleted.forEach {println(it)}
+    println()
+
+    // 5. Filter Tasks:
+    fun filterTasks(
+        taskList: MutableList<Task>,
+        selector: Task.() -> Boolean
+    ): List<Task>{
+        return taskList.filter { it.selector() }
+    }
+
+    val tasksFilteredByCompleted = filterTasks(taskList) {completed}
+    println("Tasks filtered by completed:")
+    tasksFilteredByCompleted.forEach {println(it)}
     println()
 }
 
