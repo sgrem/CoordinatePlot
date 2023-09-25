@@ -84,7 +84,7 @@ fun main() {
 }
 
 // 6. Enum Class
-//    NOTE: An enum class can't be defined as a local class.
+//    NOTE: An enum class can't be defined in a function as a local class.
 enum class Priority(){
     LOW,
     MEDIUM,
@@ -92,4 +92,7 @@ enum class Priority(){
 }
 
 // 7. Sealed Class:
-// sealed class
+//    NOTE: A sealed class can't be defined in a function as a local class.
+sealed class TaskStatus
+data class InProgress(val priority: Priority): TaskStatus()
+data object Completed : TaskStatus()
