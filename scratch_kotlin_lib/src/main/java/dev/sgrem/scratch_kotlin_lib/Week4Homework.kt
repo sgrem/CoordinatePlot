@@ -1,7 +1,6 @@
 package dev.sgrem.scratch_kotlin_lib
 
 fun main() {
-    println("Hello world!")
 
     // 1. Task Data:
     data class Task(
@@ -29,7 +28,7 @@ fun main() {
     addTask(taskList,"Task #13", Priority.MEDIUM, true)
 
     // 4. Sort Tasks:
-    // Simple High-Order function for sorting Tasks by priority
+    // Simple High-Order function for sorting Tasks by priority only
     fun sortedTasksHighOrder(
         taskList: MutableList<Task>,
         selector: (Task) -> Priority): List<Task> {
@@ -81,6 +80,21 @@ fun main() {
     tasksFilteredByCompleted.forEach {println(it)}
     println()
 
+    // TaskManager object defined at top level
+    TaskManager.addTask("Task #10", InProgress(Priority.LOW))
+    TaskManager.addTask("Task #20")
+    TaskManager.addTask("Task #13", InProgress(Priority.MEDIUM))
+    TaskManager.addTask("Task #13", Completed)
+
+    val TaskManagerTasksSortedByStatus = TaskManager.sortedTasks()
+    println("TaskManager Tasks sorted by status:")
+    TaskManagerTasksSortedByStatus.forEach {println(it)}
+    println()
+
+    val TaskManagerTasksFilteredByCompleted = TaskManager.filterTasks()
+    println("TaskManager Tasks filtered by completed:")
+    TaskManagerTasksFilteredByCompleted.forEach {println(it)}
+    println()
 }
 
 // 6. Enum Class
@@ -96,3 +110,43 @@ enum class Priority(){
 sealed class TaskStatus
 data class InProgress(val priority: Priority): TaskStatus()
 data object Completed : TaskStatus()
+
+// 8. Objects
+//    Replaced Task priority and completed with status sealed class TaskStatus
+object TaskManager {
+    data class Task(
+        val title: String,
+        var status: TaskStatus
+    )
+    val taskList: MutableList<Task> = mutableListOf()
+
+    fun addTask(
+        title: String,
+        status: TaskStatus = InProgress(Priority.HIGH)
+    ){
+        taskList.add(Task(title, status))
+    }
+
+    // Sealed class TaskStatus doesn't have a natural order and
+    // needs a custom comparator to sort based on status
+    val statusComparator = Comparator<Task> { task1, task2 ->
+        when {
+            task1.status is Completed && task2.status is Completed -> 0
+            task1.status is Completed -> 1
+            task2.status is Completed -> -1
+            else -> {
+                val priority1 = (task1.status as InProgress).priority.ordinal
+                val priority2 = (task2.status as InProgress).priority.ordinal
+                priority1.compareTo(priority2)
+            }
+        }
+    }
+
+    fun sortedTasks(): List<Task> {
+        return taskList.sortedWith(statusComparator)
+    }
+
+    fun filterTasks(): List<Task> {
+        return taskList.filter { it.status is Completed }
+    }
+}
