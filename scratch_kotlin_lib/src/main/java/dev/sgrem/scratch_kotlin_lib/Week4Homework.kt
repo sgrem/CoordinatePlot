@@ -6,7 +6,8 @@ fun main() {
     // 1. Task Data:
     data class Task(
         val title: String,
-        var priority: Int = 1,
+        // var priority: Int = 1,
+        var priority: Priority = Priority.HIGH,
         var completed: Boolean = false
     )
 
@@ -16,15 +17,16 @@ fun main() {
     // 3. Add Task:
     fun addTask(taskList: MutableList<Task>,
                 title: String,
-                priority: Int = 1,
+                // priority: Int = 1,
+                priority: Priority = Priority.HIGH,
                 completed: Boolean = false
                 ){
         taskList.add(Task(title, priority, completed))
     }
 
-    addTask(taskList,"Task #10", 3, true)
+    addTask(taskList,"Task #10", Priority.LOW, true)
     addTask(taskList,"Task #20")
-    addTask(taskList,"Task #13", 2, true)
+    addTask(taskList,"Task #13", Priority.MEDIUM, true)
 
     // 4. Sort Tasks:
     /*
@@ -67,5 +69,12 @@ fun main() {
     println("Tasks filtered by completed:")
     tasksFilteredByCompleted.forEach {println(it)}
     println()
+
 }
 
+// 6. Enum Class
+enum class Priority(){
+    LOW,
+    MEDIUM,
+    HIGH
+}
