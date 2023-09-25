@@ -29,6 +29,17 @@ fun main() {
     addTask(taskList,"Task #13", Priority.MEDIUM, true)
 
     // 4. Sort Tasks:
+    // Simple High-Order function for sorting Tasks by priority
+    fun sortedTasksHighOrder(
+        taskList: MutableList<Task>,
+        selector: (Task) -> Priority): List<Task> {
+        return taskList.sortedBy {selector(it)}
+    }
+    val tasksSortedByTitleHighOrder = sortedTasksHighOrder(taskList) {it.priority}
+    println("Tasks sorted by priority High Order:")
+    tasksSortedByTitleHighOrder.forEach {println(it)}
+    println()
+
     /*
      *  sortedTasks is a generic function for any type T that implements
      *  the Comparable<T> interface. The selector parameter is a function
@@ -73,8 +84,12 @@ fun main() {
 }
 
 // 6. Enum Class
+//    NOTE: An enum class can't be defined as a local class.
 enum class Priority(){
     LOW,
     MEDIUM,
     HIGH
 }
+
+// 7. Sealed Class:
+// sealed class
