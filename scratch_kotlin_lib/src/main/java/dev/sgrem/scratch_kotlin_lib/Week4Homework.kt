@@ -81,10 +81,10 @@ fun main() {
     println()
 
     // TaskManager object defined at top level
-    TaskManager.addTask("Task #10", InProgress(Priority.LOW))
+    TaskManager.addTask("Task #10", TaskStatus.InProgress(Priority.LOW))
     TaskManager.addTask("Task #20")
-    TaskManager.addTask("Task #13", InProgress(Priority.MEDIUM))
-    TaskManager.addTask("Task #13", Completed)
+    TaskManager.addTask("Task #13", TaskStatus.InProgress(Priority.MEDIUM))
+    TaskManager.addTask("Task #13", TaskStatus.Completed)
 
     val TaskManagerTasksSortedByStatus = TaskManager.sortedTasks()
     println("TaskManager Tasks sorted by status:")
@@ -107,9 +107,10 @@ enum class Priority(){
 
 // 7. Sealed Class:
 //    NOTE: A sealed class can't be defined in a function as a local class.
-sealed class TaskStatus
-data class InProgress(val priority: Priority): TaskStatus()
-data object Completed : TaskStatus()
+sealed class TaskStatus {
+    data class InProgress(val priority: Priority) : TaskStatus()
+    data object Completed : TaskStatus()
+}
 
 // 8. Objects
 //    Replaced Task priority and completed with status sealed class TaskStatus
@@ -122,7 +123,7 @@ object TaskManager {
 
     fun addTask(
         title: String,
-        status: TaskStatus = InProgress(Priority.HIGH)
+        status: TaskStatus = TaskStatus.InProgress(Priority.HIGH)
     ){
         taskList.add(Task(title, status))
     }
@@ -131,12 +132,12 @@ object TaskManager {
     // needs a custom comparator to sort based on status
     val statusComparator = Comparator<Task> { task1, task2 ->
         when {
-            task1.status is Completed && task2.status is Completed -> 0
-            task1.status is Completed -> 1
-            task2.status is Completed -> -1
+            task1.status is TaskStatus.Completed && task2.status is TaskStatus.Completed -> 0
+            task1.status is TaskStatus.Completed -> 1
+            task2.status is TaskStatus.Completed -> -1
             else -> {
-                val priority1 = (task1.status as InProgress).priority.ordinal
-                val priority2 = (task2.status as InProgress).priority.ordinal
+                val priority1 = (task1.status as TaskStatus.InProgress).priority.ordinal
+                val priority2 = (task2.status as TaskStatus.InProgress).priority.ordinal
                 priority1.compareTo(priority2)
             }
         }
@@ -147,6 +148,6 @@ object TaskManager {
     }
 
     fun filterTasks(): List<Task> {
-        return taskList.filter { it.status is Completed }
+        return taskList.filter { it.status is TaskStatus.Completed }
     }
 }
